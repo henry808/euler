@@ -5,8 +5,7 @@ from __future__ import print_function
 def fib():
     """Generates numbers in a fibonacci sequence: f(n) = f(n-1) + f(n-2)
     """
-    n = 1
-    m = 0
+    m, n = 0, 1
     while True:
         sum = n + m
         m, n = n, sum
