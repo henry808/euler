@@ -9,12 +9,21 @@ def fib():
     m = 0
     while True:
         sum = n + m
-        m = n
-        n = sum
+        m, n = n, sum
         yield m
+
+def all_evens_under(n):
+    """generates a list of all evens under n"""
+    gen = fib()
+    l = []
+    while True:
+        current = gen.next()
+        if current > n:
+            return l
+        if current % 2 == 0:
+            l.append(current)
+
 
 
 if __name__ == '__main__':
-    g = fib()
-    for i in range(6):
-        print(g.next())
+    print(sum(all_evens_under(4000000)))
