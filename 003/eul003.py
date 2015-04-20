@@ -19,20 +19,13 @@ def is_prime(n):
 
 
 def largest_prime(n):
-    square_root = int(sqrt(n))
-    for num in range(square_root, 0, -1):
-        if not [i for i in range(2, num) if num % i == 0]:
-            print(num)
-            if n % num == 0:
-                return num
-    # gen = prime()
-    # last = 2
-    # while True:
-    #     next_ = gen.next()
-    #     print(last)
-    #     if next_ > square_root:
-    #         return last
-    #     last = next_
+    div = 2
+    while True:
+        if n % div == 0:
+            current = n / div
+            if is_prime(current) and n % current == 0:
+                return current
+        div += 1
 
 
 if __name__ == '__main__':
