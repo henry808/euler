@@ -5,8 +5,14 @@ from math import sqrt
 def is_prime(n):
     """returns True if n is a prime #
     """
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
     square_root = int(sqrt(n))
-    if [i for i in range(2, square_root) if n % i == 0]:
+    if [i for i in range(2, square_root + 1) if n % i == 0]:
         return False
     else:
         return True
