@@ -16,9 +16,9 @@ def is_palindrome(n):
         n / 10
     # check if palindrome
     for i in range(length/2):
-        if i !=  
+        if ith_digit(n, i) != ith_digit(n, length - i - 1 ):
+            return False
+    return True
 
-    return False
-
-def find palindromic():
+def find_palindromic(n):
     pass
