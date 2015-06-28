@@ -31,5 +31,4 @@ def largest_prime(n):
 
 if __name__ == '__main__':
     x = 600851475143
-    x = 8
     print(largest_prime(x))
