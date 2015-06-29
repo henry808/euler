@@ -27,8 +27,7 @@ def find_palindromic():
     for i in range(1000):
         for j in range(1000):
             product = i * j
-            print(product)
-            if is_palindrome(product):
+            if is_palindrome(product) and (product > palindrome):
                 palindrome = product
     return palindrome
 
