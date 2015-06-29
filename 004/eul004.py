@@ -8,7 +8,7 @@ def ith_digit(n, i=0):
 
 
 def is_palindrome(n):
-    """ return true if integer is a plindrome"""
+    """ return true if integer is a palindrome"""
     # calculate length of digits
     length = 0
     n2 = n
@@ -21,5 +21,17 @@ def is_palindrome(n):
             return False
     return True
 
-def find_palindromic(n):
-    pass
+
+def find_palindromic():
+    palindrome = 1
+    for i in range(1000):
+        for j in range(1000):
+            product = i * j
+            print(product)
+            if is_palindrome(product):
+                palindrome = product
+    return palindrome
+
+
+if __name__ == '__main__':
+    print(find_palindromic())

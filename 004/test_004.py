@@ -14,7 +14,7 @@ def test_ithdigit():
 
 def test_ispalindrome():
     input_false = [10, 102, 1121, 1112]
-    input_true = [1, 11, 101, 111, 1111, 1221]
+    input_true = [1, 11, 101, 111, 1111, 1221, 909909]
     for i in input_false:
         assert(is_palindrome(i) is False)
     for i in input_true:
