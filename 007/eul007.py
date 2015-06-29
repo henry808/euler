@@ -30,6 +30,5 @@ def find_prime(nth):
     return number
 
 
-
 if __name__ == "__main__":
     print(find_prime(10001))
