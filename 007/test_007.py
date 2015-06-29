@@ -8,3 +8,4 @@ def test_is_prime():
         assert is_prime(n) is True
     for n in not_prime:
         assert is_prime(n) is False
+
