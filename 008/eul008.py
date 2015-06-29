@@ -8,14 +8,11 @@ number = 73167176531330624919225119674426574742355349194934969835203127745063262
 
 def find_max(n):
     """find max product of n consecutive digits"""
-    array = list(str(number))
+    array = str(number)
     max_product = 0
-    for i in range(len(array)):
-        try:
+    for i in range(len(array) - n):
             product = prod([int(array[i + j]) for j in range(n)])
             max_product = max(max_product, product)
-        except IndexError:
-            break
     return max_product
 
 
