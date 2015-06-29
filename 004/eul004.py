@@ -11,12 +11,13 @@ def is_palindrome(n):
     """ return true if integer is a plindrome"""
     # calculate length of digits
     length = 0
-    while n > 0:
+    n2 = n
+    while n2 > 0:
         length += 1
-        n / 10
+        n2 = n2 / 10
     # check if palindrome
     for i in range(length/2):
-        if ith_digit(n, i) != ith_digit(n, length - i - 1 ):
+        if ith_digit(n, i) != ith_digit(n, length - i - 1):
             return False
     return True
 
