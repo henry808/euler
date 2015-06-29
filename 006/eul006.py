@@ -13,6 +13,9 @@ def sum_squares(n):
     #     sum1 += i**2
     # return sum1
 
+def square_sums(n):
+    return sqr(sum(range(1, n + 1)))
 
 if __name__ == '__main__':
-    print(sum_squares(10))
+    print(square_sums(10) - sum_squares(10))
+    print(square_sums(100) - sum_squares(100))
