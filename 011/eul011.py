@@ -1,5 +1,6 @@
 #! /usr/bin/python
 from __future__ import print_function
+from numpy import prod
 
 # Project Euler # 11
 
@@ -30,15 +31,35 @@ def max_product(grid, n):
         up, down, left, right, or diagnal"""
     # four different directions to test: left, down
     # and two diagnals
+    max1 = 0
+    # left to right
     for x in range(len(grid)):
         for y in range(len(grid[x]) - n + 1):
-            print([grid[x][y + i] for i in range(n)])
-            print(x, " ", sum([grid[x][y + i] for i in range(n)]))
+            max1 = max(max1, prod([grid[x][y + i] for i in range(n)]))
 
+    # top to bottom
+    for x in range(len(grid) - n + 1):
+        for y in range(len(grid[x])):
+            max1 = max(max1, prod([grid[x + i][y] for i in range(n)]))
+
+    # top left to bottom right
+    for x in range(len(grid) - n + 1):
+        for y in range(len(grid[x]) - n + 1):
+            max1 = max(max1, prod([grid[x + i][y + i] for i in range(n)]))
+
+    # top right to bottom left
+    for x in range(n - 1, len(grid)):
+        for y in range(len(grid[x]) - n + 1):
+            max1 = max(max1, prod([grid[x - i][y + i] for i in range(n)]))
+
+    return max1
 
 if __name__ == '__main__':
+    # format grid
     grid_list = map(int, grid.split())
     grid2d = [[0 for x in range(20)] for x in range(20)]
     for i in range(len(grid_list)):
         grid2d[i / 20][i % 20] = grid_list[i]
-    max_product(grid2d, 4)
+
+    # find max_product
+    print(max_product(grid2d, 4))
