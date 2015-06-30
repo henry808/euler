@@ -30,7 +30,10 @@ def max_product(grid, n):
         up, down, left, right, or diagnal"""
     # four different directions to test: left, down
     # and two diagnals
-    pass
+    for x in range(len(grid)):
+        for y in range(len(grid[x]) - n + 1):
+            print([grid[x][y + i] for i in range(n)])
+            print(x, " ", sum([grid[x][y + i] for i in range(n)]))
 
 
 if __name__ == '__main__':
@@ -38,4 +41,4 @@ if __name__ == '__main__':
     grid2d = [[0 for x in range(20)] for x in range(20)]
     for i in range(len(grid_list)):
         grid2d[i / 20][i % 20] = grid_list[i]
-    print(grid2d)
+    max_product(grid2d, 4)
