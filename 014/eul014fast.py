@@ -19,7 +19,7 @@ def generate_sequence(n):
 
 
 def generate_sequence_length(n):
-    """generate sequance starting with n"""
+    """generate length for sequance starting with n"""
     list1 = [n]
     while n != 1:
         if n % 2 == 0:
@@ -27,21 +27,37 @@ def generate_sequence_length(n):
         else:
             n = 3 * n + 1
         list1.append(n)
-    print("list ", list1)
+    print("list ", list1, )
     return len(list1)
 
 
+def generate_sequence_length_table(size):
+    """generate table of lengths for sequance of size size"""
+    table_lengths = {}
+    for current in range(1, size + 1):
+        n = current
+        current_length = 1
+        while n != 1:
+            if n % 2 == 0:
+                n = n / 2
+            else:
+                n = 3 * n + 1
+            if n in table_lengths:
+                current_length += table_lengths[n]
+                break
+            current_length += 1
+        table_lengths[current] = current_length
+    return table_lengths
+
+
 def longest(b):
-    max1 = 1
-    longest1 = 1
-    for i in range(1, b + 1):
-        # print(generate_sequence(i), "len: ", len(generate_sequence(i)))
-        if max1 < generate_sequence_length(i):
-            max1 = generate_sequence_length(i)
-            longest1 = i
-    return longest1
+    table = generate_sequence_length_table(b)
+    max_value  = max(table.values())
+    for key, val in table.iteritems():
+        if val == max_value:
+            return key
 
 if __name__ == '__main__':
     start_time = time()
-    print(longest(10))
+    print(longest(1000000))
     print("time passed: ", time() - start_time)

@@ -1,4 +1,5 @@
-from eul014fast import generate_sequence_length, generate_sequence_length_table
+from eul014fast import generate_sequence_length
+from eul014fast import generate_sequence_length_table
 
 
 def test_generate_sequence_length():
