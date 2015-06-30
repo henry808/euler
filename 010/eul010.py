@@ -6,9 +6,7 @@ from __future__ import print_function
 # using sieve of Eratosthenes to solve this
 
 def sieve_of_eratosthenes(n):
-    array = []
-    for i in range(n):
-        array.append(True)
+    array = [True] * n
     p = 2
     count = 2
     prime_list = []
