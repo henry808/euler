@@ -22,3 +22,16 @@ def factor(n):
             factors.append(i)
     factors.append(n)
     return factors
+
+
+def divis(n):
+    """return first divisor with over n triangles"""
+    gen = gen_triangle()
+    divisors = 0
+    while divisors <= n:
+        triangle = gen.next()
+        divisors = len(factor(triangle))
+    return triangle
+
+if __name__ == '__main__':
+    print(divis(500))
