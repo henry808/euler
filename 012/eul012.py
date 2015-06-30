@@ -1,5 +1,6 @@
 #! /usr/bin/python
 from __future__ import print_function
+from math import ceil, sqrt
 
 # Project Euler # 12
 
@@ -15,17 +16,17 @@ def gen_triangle():
 
 
 def factor(n):
-    """returns a list of factors given n"""
-    factors = []
-    for i in range(1, n/2 + 1):
+    results = set()
+    for i in xrange(1, int(sqrt(n))+1):
         if n % i == 0:
-            factors.append(i)
-    factors.append(n)
-    return factors
+            results.add(i)
+            results.add(n/i)
+    return results
 
-def num_factor(n):
-    num = 0
-    return num
+
+def num_divisors(n):
+    return len(factor(n))
+
 
 def divis(n):
     """return first divisor with over n triangles"""
