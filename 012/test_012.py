@@ -1,4 +1,4 @@
-from eul012 import gen_triangle, factor
+from eul012 import gen_triangle, factor, num_factor
 
 
 def test_gen_triangle():
@@ -15,3 +15,10 @@ def test_factor():
                 [1, 2, 4, 7, 14, 28]]
     for ind, val in enumerate(input):
         assert(factor(val) == expected[ind])
+
+
+def test_num_factor():
+    inputl = [1, 3, 6, 10, 15, 21, 28]
+    expected = [1, 2, 4, 4, 4, 4, 6]
+    for i in inputl:
+        assert(num_factor(i) == expected[i])

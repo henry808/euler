@@ -23,6 +23,9 @@ def factor(n):
     factors.append(n)
     return factors
 
+def num_factor(n):
+    num = 0
+    return num
 
 def divis(n):
     """return first divisor with over n triangles"""
