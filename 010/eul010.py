@@ -24,5 +24,5 @@ def sieve_of_eratosthenes(n):
                 return prime_list
         p = count
 
-if __name__ == "__main__":
-    print(sieve_of_eratosthenes(10))
+if __name__ == '__main__':
+    print(sum(sieve_of_eratosthenes(2000000)))
