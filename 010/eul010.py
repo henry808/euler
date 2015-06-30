@@ -9,11 +9,20 @@ def sieve_of_eratosthenes(n):
     array = []
     for i in range(n):
         array.append(True)
-    for i in range(2, int(sqrt(n))):
-
-    return array
-
-
+    p = 2
+    count = 2
+    prime_list = []
+    while True:
+        prime_list.append(p)
+        # Make all False that are mutiples of prime
+        for i in range(0, n, p):
+            array[i] = False
+        # Find next prime
+        while array[count] is False:
+            count += 1
+            if count == n:
+                return prime_list
+        p = count
 
 if __name__ == "__main__":
     print(sieve_of_eratosthenes(10))
