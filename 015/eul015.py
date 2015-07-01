@@ -1,26 +1,24 @@
 #! /usr/bin/python
 from __future__ import print_function
-from time import time
 
 # Project Euler # 15
 
-def count_routes(length, x=0, y=0):
-    if x == length and y == length:
-        sum = 1
-    elif x == length:
-        sum = count_routes(length, x, y + 1) + 1
-    elif y == length:
-        sum = count_routes(length, x + 1, y) + 1
-    else:
-        sum = count_routes(length, x, y + 1) + 1 + count_routes(length, x + 1, y) + 1
-    return sum
+# this solution goes to each point on the grid and puts the total number
+# paths in each cell on the grid (adds the one or two previous points)
+# inspired by djikstra's algorithm
+def number_routes(width):
+    # add 1 because we are looking at edges
+    n = width + 1
+    table = [[0 for x in range(n)] for x in range(n)]
+    table[0][0]=1
+    for x in range(n):
+        for y in range(n):
+            if x - 1 >= 0:
+                table[x][y] += table[x - 1][y]
+            if y - 1 >= 0:
+                table[x][y] += table[x][y - 1]
+    return table[n - 1][n - 1]
 
-
-def number_routes(n):
-    # generate a table where each point matches a vertex of grid
-    # table = [[False for x in range(0, n + 1) ] for x in range(0, n + 1)]
-    length = n + 1
-    return count_routes(length, 0, 0)
 
 if __name__ == '__main__':
-    print(number_routes(2))
+    print(number_routes(20))
