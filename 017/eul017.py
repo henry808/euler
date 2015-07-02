@@ -26,7 +26,7 @@ digit[0] = {0: '',
             19: 'nineteen'} 
 digit[1] = {20: 'twenty',
             30: 'thirty',
-            40: 'fourty',
+            40: 'forty',
             50: 'fifty',
             60: 'sixty',
             70: 'seventy',
@@ -46,7 +46,9 @@ def number2word(n):
     if n > 99:
         word += digit[0][n / 100]
         word += ' hundred '
-        n = n % 100      
+        n = n % 100  
+        if n > 0:
+            word += 'and '    
     if n > 19:
         word += digit[1][(n / 10) * 10]
         word += ' '
@@ -54,7 +56,14 @@ def number2word(n):
     word += digit[0][n]
     return word.strip()
 
+def count(n):
+    count = 0
+    for i in range(1, n + 1):
+        print(number2word(i).replace(" ", ""), " ", len(number2word(i).replace(" ", "")))
+        count += len(number2word(i).replace(" ", ""))
+    return count
+
 if __name__ == '__main__':
-    print(digit)
+    print(count(1000))
 
 
