@@ -9,7 +9,8 @@ def proper_divisors(n):
     for i in xrange(2, int(sqrt(n))+1):
         if n % i == 0:
             results.append(i)
-            results.append(n/i)
+            if i != n/i:
+                results.append(n/i)
     return results
 
 def is_amicable(n):
