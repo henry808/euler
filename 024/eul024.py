@@ -3,7 +3,7 @@ from __future__ import print_function
 import itertools
 
 # Project Euler #24
-
+# may be cheating because I used the permutation function built into itertools
 
 def ith_permutation(seq, ind):
     """ith permutation of seq list"""
