@@ -25,14 +25,5 @@ if __name__ == '__main__':
         for j in range(len(abundant_table) - i):
             num = abundant_table[i] + abundant_table[j]
             if num < 28123:
-                # if num < 100: print(num)
                 abundant_sum_table.add(num)
-    # abundant_sum_table.sort()
-    total = 0
-    non_abundant_sums = []
-    for i in range(28123):
-        if i not in abundant_sum_table:
-            total += i
-            non_abundant_sums.append(i)
-    non_abundant_sums.sort()
-    print(total)
+    print(sum([x for x in range(28123) if x not in abundant_sum_table]))
