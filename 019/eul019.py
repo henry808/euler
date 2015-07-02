@@ -17,3 +17,36 @@ def is_leap_year(n):
     else:
         return False
 
+def days_in_months(month, year):
+    # return days in month from 1 to 12
+    if month is 2:
+        if is_leap_year(year):
+            return 29
+        else:
+            return 28
+    months = [31, 0, 31, 30, 31, 30,
+              31, 31, 30, 31, 30, 31]
+    return months[month - 1]
+
+def count_sundays():
+    # Sundays that fall on the 1st of the month:
+    # 1 Jan 1901 to 31 Dec 2000
+    # first is first of month and 1 = Monday 
+    # and 7 = Sunday 
+    day = 2 # this has to be set to first day of first mo
+    sundays = 0
+    firstofmonths = []
+    # each loop is one month
+    for year in range(1901, 2001):
+        for month in range(1, 13):
+            if day % 7 == 0:
+                sundays += 1
+                firstofmonths.append((month, year))
+            day += days_in_months(month, year)
+    print(firstofmonths)
+    return sundays
+
+if __name__ == '__main__':
+    print(count_sundays())
+
+
