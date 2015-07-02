@@ -35,15 +35,11 @@ def count_sundays():
     # and 7 = Sunday 
     day = 2 # this has to be set to first day of first mo
     sundays = 0
-    firstofmonths = []
-    # each loop is one month
     for year in range(1901, 2001):
         for month in range(1, 13):
             if day % 7 == 0:
                 sundays += 1
-                firstofmonths.append((month, year))
             day += days_in_months(month, year)
-    print(firstofmonths)
     return sundays
 
 if __name__ == '__main__':
