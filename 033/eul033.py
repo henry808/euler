@@ -28,7 +28,7 @@ def remove_from(num, remove):
 
 def is_special_fraction(num, den):
     """ only works on 2 digit numerators and denominators"""
-    if len(num) != 2 or len(den) != 2:
+    if len(str(num)) != 2 or len(str(den)) != 2:
         return False
     can = cancellable(num, den)
     # if there are two cancellables, the numbers are either the
@@ -42,10 +42,18 @@ def is_special_fraction(num, den):
     new_num = remove_from(num, can_value)
     new_den = remove_from(den, can_value)
     if Fraction(new_num, new_den) == Fraction(num, den):
-        return True
+        return new_num, new_den
     else:
         return False
 
 
 if __name__ == '__main__':
-    pass
+    product = 1
+    for den in range(11, 99):
+        for num in range(11, den):
+            if not(den % 10 == 0) and not(num % 10 == 0):
+                new = is_special_fraction(num, den)
+                if new:
+                    print(num, "/", den, " = ", new[0], "/", new[1])
+                    product *= Fraction(num, den)
+    print("product:", product)

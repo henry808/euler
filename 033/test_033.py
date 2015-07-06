@@ -1,4 +1,4 @@
-from eul033 import cancellable, remove_from
+from eul033 import cancellable, remove_from, is_special_fraction
 
 
 def test_cancellable():
@@ -27,3 +27,8 @@ def test_remove_from():
     results = [2, 2, 2, 12]
     for ind, val in enumerate(inputs):
         assert(remove_from(*val) == results[ind])
+
+
+def test_is_special_fraction():
+    assert(is_special_fraction(49, 98) == (4, 8))
+    assert(is_special_fraction(30, 50) is False)
