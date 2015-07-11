@@ -30,6 +30,8 @@ def get_pandigitals(n):
 if __name__ == '__main__':
     start_time = time()
     biggest = 0
+    # first digit must be 9 and 4 or less digits because five digit
+    # number x2 is too large
     for i in xrange(9, 9876):
         pandigital = get_pandigitals(i)
         if pandigital:
