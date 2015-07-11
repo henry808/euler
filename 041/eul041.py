@@ -2,21 +2,23 @@
 from __future__ import print_function
 from math import sqrt
 from time import time
+from itertools import permutations
+
 
 # Project Euler # 40
 
 
-def is_pandigital(n):
-    length = len(str(n))
-    if length > 9:
-        return False
-    digits = map(int, set(n))
-    if len(digits) != length or 0 in digits:
-        return False
-    for digit in digits:
-        if digit > length:
-            return False
-    return True
+# def is_pandigital(n):
+#     length = len(str(n))
+#     if length > 9:
+#         return False
+#     digits = map(int, set(n))
+#     if len(digits) != length or 0 in digits:
+#         return False
+#     for digit in digits:
+#         if digit > length:
+#             return False
+#     return True
 
 
 def is_prime(n):
@@ -34,17 +36,25 @@ def is_prime(n):
 
 
 if __name__ == '__main__':
-    pandigital_primes = []
+    # start at greatest
+    digits = '987654321'
+    digits_list = []
+    for i in range(len(digits)):
+        digits_list.append(digits)
+        digits = digits[1:]
     start = time()
-    # the largest pandigital prime is most likely 9 digits
-    # so we should look between 123456789 and 987654321
-    # this checks if it is a pandigital:
-    for i in xrange(123456789, 987654322, 2):
-        length = len(str(i))
-        if all([str(g) in str(i) for g in range(1, length + 1)]):
-            print(i)
-            if is_prime(i):
-                pandigital_primes.append(i)
-                print(i)
-    print("greatest pandigital prime is", max(pandigital_primes),
-          "in time:", time() - start)
+    end = False
+    for i in digits_list:
+        for p in permutations(i):
+            current = int("".join(p))
+            # only checks odd values for performance
+            if current % 2 == 1:
+                # print(current)
+                if is_prime(int("".join(p))):
+                    print("greatest pandigital prime is", 
+                          current,
+                          "in time:", time() - start)
+                    end = True
+                    break
+        if end is True:
+            break
