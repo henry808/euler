@@ -37,7 +37,9 @@ def is_prime(n):
 
 if __name__ == '__main__':
     # start at greatest
-    digits = '987654321'
+    # 1+2+3+4+5+6+7+8+9=45 => divisable by 3)
+    # 1+2+3+4+5+6+7+8=36 => divisable by 3)
+    digits = '7654321'
     digits_list = []
     for i in range(len(digits)):
         digits_list.append(digits)
