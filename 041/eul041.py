@@ -5,22 +5,7 @@ from time import time
 from itertools import permutations
 
 
-# Project Euler # 40
-
-
-# def is_pandigital(n):
-#     length = len(str(n))
-#     if length > 9:
-#         return False
-#     digits = map(int, set(n))
-#     if len(digits) != length or 0 in digits:
-#         return False
-#     for digit in digits:
-#         if digit > length:
-#             return False
-#     return True
-
-
+# Project Euler # 41
 def is_prime(n):
     """ return True if n is a prime number"""
     if n < 2:
