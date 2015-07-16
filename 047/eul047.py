@@ -52,20 +52,21 @@ def prime_factors(n, primes):
 
 
 if __name__ == '__main__':
-    primes = sieve_of_eratosthenes(9999)
-    for i in range(10, 99 - 1):
-        if len(prime_factors(i, primes)) == 2:
+    start = time()
+    primes = sieve_of_eratosthenes(199999)
+    for i in range(99995, 199999):
+        if len(prime_factors(i, primes)) == 4:
             # if one prime is found then its possible there are
             # consecutive primes
+            print("possible:", i, " => prime factors:", prime_factors(i, primes))
             possible = True
-            print("possible prime:", i)
-            for j in range(i + 1, i + 2):
-                print("test prime:", j)
-                if len(prime_factors(j, primes)) != 2:
+            for j in range(i + 1, i + 4):
+                if len(prime_factors(j, primes)) != 4:
                     possible = False
             if possible:
+                for j in range(i, i + 4):
+                    print(j, " => prime factors:", prime_factors(j, primes))
                 break
-    print(i)
-
+    print("time to solve:", time() - start)
 
 
