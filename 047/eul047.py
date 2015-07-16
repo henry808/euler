@@ -15,7 +15,7 @@ def sieve_of_eratosthenes(n):
     while True:
         prime_list.append(p)
         # Make all False that are mutiples of prime
-        for i in range(p, n, p):
+        for i in range(p, n + 1 , p):
             array[i] = False
         # Find next prime
         while array[count] is False:
@@ -51,21 +51,48 @@ def prime_factors(n, primes):
     return factors
 
 
+# above function too slow so will use a table of prime factors
+# and after dividing number, look it up in the table
+def prime_factors_table(n):
+    primes = sieve_of_eratosthenes(n+1)
+    table = [set() for x in range(n + 1)]
+    for num in range(2, n+1):
+        if num not in primes:
+            prime_set = set()
+            i = 0
+            while primes[i] < num:
+                if num % primes[i] == 0:
+                    prime_set.add(primes[i])
+                    if (num / primes[i]) in primes:
+                        new_set = prime_set | set([(num / primes[i])])
+                    else:
+                        new_set = prime_set | table[num / primes[i]]
+                    break
+                i += 1
+            table[num] = new_set
+    return table
+
+
+
+
+
 if __name__ == '__main__':
+    num_primes = 4
     start = time()
-    primes = sieve_of_eratosthenes(199999)
-    for i in range(99995, 199999):
-        if len(prime_factors(i, primes)) == 4:
+    table = prime_factors_table(999999)
+    print("Generated prime table.")
+    for ind, val in enumerate(table):
+        if len(val) == num_primes:
             # if one prime is found then its possible there are
             # consecutive primes
-            print("possible:", i, " => prime factors:", prime_factors(i, primes))
+            print("possible:", ind, " => prime factors:", val)
             possible = True
-            for j in range(i + 1, i + 4):
-                if len(prime_factors(j, primes)) != 4:
+            for j in range(ind + 1, ind + num_primes):
+                if len(table[j]) != num_primes:
                     possible = False
             if possible:
-                for j in range(i, i + 4):
-                    print(j, " => prime factors:", prime_factors(j, primes))
+                for j in range(ind, ind + num_primes):
+                    print(j, " => prime factors:", table[j])
                 break
     print("time to solve:", time() - start)
 
