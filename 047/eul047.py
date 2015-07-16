@@ -92,11 +92,11 @@ def find_consecutives(n, num_primes):
             if len(prime_set) == num_primes:
                 print("possible:", num, " => prime factors:", table[num])
                 possible = True
-                for j in range(num -1, num - num_primes, -1):
+                for j in range(num - 1, num - num_primes, -1):
                     if len(table[j]) != num_primes:
                         possible = False
                 if possible:
-                    for j in range(num, num - num_primes, -1):
+                    for j in range(num - num_primes + 1, num):
                         print(j, " => prime factors:", table[j])
                     break
             # end of consecutive checking code
@@ -106,22 +106,4 @@ def find_consecutives(n, num_primes):
 if __name__ == '__main__':
     start = time()
     find_consecutives(999999, 4)
-
-    # table = prime_factors_table(99999)
-    # print("Generated prime table.")
-    # for ind, val in enumerate(table):
-    #     if len(val) == num_primes:
-    #         # if one prime is found then its possible there are
-    #         # consecutive primes
-    #         print("possible:", ind, " => prime factors:", val)
-    #         possible = True
-    #         for j in range(ind + 1, ind + num_primes):
-    #             if len(table[j]) != num_primes:
-    #                 possible = False
-    #         if possible:
-    #             for j in range(ind, ind + num_primes):
-    #                 print(j, " => prime factors:", table[j])
-    #             break
     print("time to solve:", time() - start)
-
-
