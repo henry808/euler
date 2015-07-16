@@ -63,37 +63,65 @@ def prime_factors_table(n):
             while primes[i] < num:
                 if num % primes[i] == 0:
                     prime_set.add(primes[i])
-                    if (num / primes[i]) in primes:
-                        new_set = prime_set | set([(num / primes[i])])
-                    else:
-                        new_set = prime_set | table[num / primes[i]]
+                    prime_set = prime_set | table[num / primes[i]]
                     break
                 i += 1
-            table[num] = new_set
+            table[num] = prime_set
+        else:
+            table[num] = set([num])
     return table
 
 
-
-
+# approach above did not work, so will check for consecutives
+# while generating table:
+def find_consecutives(n, num_primes):
+    primes = sieve_of_eratosthenes(n+1)
+    table = [set() for x in range(n + 1)]
+    for num in range(2, n+1):
+        if num not in primes:
+            prime_set = set()
+            i = 0
+            while primes[i] < num:
+                if num % primes[i] == 0:
+                    prime_set.add(primes[i])
+                    prime_set = prime_set | table[num / primes[i]]
+                    break
+                i += 1
+            table[num] = prime_set
+            # code here checks for consecutives
+            if len(prime_set) == num_primes:
+                print("possible:", num, " => prime factors:", table[num])
+                possible = True
+                for j in range(num -1, num - num_primes, -1):
+                    if len(table[j]) != num_primes:
+                        possible = False
+                if possible:
+                    for j in range(num, num - num_primes, -1):
+                        print(j, " => prime factors:", table[j])
+                    break
+            # end of consecutive checking code
+        else:
+            table[num] = set([num])
 
 if __name__ == '__main__':
-    num_primes = 4
     start = time()
-    table = prime_factors_table(999999)
-    print("Generated prime table.")
-    for ind, val in enumerate(table):
-        if len(val) == num_primes:
-            # if one prime is found then its possible there are
-            # consecutive primes
-            print("possible:", ind, " => prime factors:", val)
-            possible = True
-            for j in range(ind + 1, ind + num_primes):
-                if len(table[j]) != num_primes:
-                    possible = False
-            if possible:
-                for j in range(ind, ind + num_primes):
-                    print(j, " => prime factors:", table[j])
-                break
+    find_consecutives(999999, 4)
+
+    # table = prime_factors_table(99999)
+    # print("Generated prime table.")
+    # for ind, val in enumerate(table):
+    #     if len(val) == num_primes:
+    #         # if one prime is found then its possible there are
+    #         # consecutive primes
+    #         print("possible:", ind, " => prime factors:", val)
+    #         possible = True
+    #         for j in range(ind + 1, ind + num_primes):
+    #             if len(table[j]) != num_primes:
+    #                 possible = False
+    #         if possible:
+    #             for j in range(ind, ind + num_primes):
+    #                 print(j, " => prime factors:", table[j])
+    #             break
     print("time to solve:", time() - start)
 
 

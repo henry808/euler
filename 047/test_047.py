@@ -14,12 +14,12 @@ def test_prime_factors_table():
     results = prime_factors_table(10)
     expected = [set(),
                 set(),
-                set(),
-                set(),
                 set([2]),
-                set([]),
+                set([3]),
+                set([2]),
+                set([5]),
                 set([2, 3]),
-                set(),
+                set([7]),
                 set([2]),
                 set([3]),
                 set([2, 5])]
