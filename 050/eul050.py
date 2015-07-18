@@ -45,18 +45,24 @@ def is_prime(n):
 
 def largest_consecutive(p):
     table = sieve_of_eratosthenes(p)
-    result = []
-    for start in xrange(len(table)):
-        total = table[start]
-        consecutive_primes = [table[start]]
-        for end in xrange(start + 1, len(table)):
-            consecutive_primes.append(table[end])
-            total += table[end]
+    # find sequence length which is still below max to count down from
+    total = 0
+    for i in xrange(len(table)):
+        total += table[i]
+        if total > p:
+            break
+    max_length = i
+
+    # start from longest possible and then return seq when found
+    for length in xrange(max_length, 1, -1):
+        for start in range(len(table) - length + 1):
+            total = sum(table[start:start+length])
             if total > p:
                 break
-            if is_prime(total) and len(consecutive_primes) > len(result):
-                result = consecutive_primes[:]
-    return result
+            if is_prime(total):
+                return table[start:start+length]
+
+
 if __name__ == '__main__':
     start = time()
     n = largest_consecutive(1000000)
